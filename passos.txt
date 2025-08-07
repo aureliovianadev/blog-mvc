@@ -1,0 +1,13 @@
+//Configurando o GITHUB:
+git config --global user.name aureliovianadev
+git config --global user.email aureliovianadev@gmail.com
+
+//Listar os SDK:
+dotnet --list-sdks
+
+//Criando um projeto MVC:
+dotnet new mvc -o BlogLelo
+
+//Executar o projeto:
+cd BlogLelo
+dotnet watch run
