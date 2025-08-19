@@ -3,27 +3,34 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">BlogLelo</h1>
-    <p>Confira aqui as últimas noticias e novidades do mundo!!!</p>
+<div class="p-5 mb-4 bg-secondary rounded-3 text-white text-center">
+    <h1 class="display-3 fw-bold">BlogLelo</h1>
+    <p class="fs-4">Confira aqui as últimas tendências e novidades do mundo da decoração!</p>
 </div>
 
-<div class="conteiner">
+<div class="conteiner pb-5">
     <div class="row row-cols-1 row-cols-sm-2 g-3">
         @foreach (Postagem postagem in Model)
         {
            <div class="col">
-                <div class="card">
-                    <div class="row g-0">
+                <div class="card h-100">
+                    <div class="row h-100 g-0">
                     <div class="col-md-4">
-                        <img src="@postagem.Thumbnail" class="img-fluid rounded-start h-100" alt="@postagem.Nome">
+                        <img src="@postagem.Thumbnail" class="img-fluid rounded-start h-100 object-fit-cover" alt="@postagem.Nome">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
+                            <button class="btn btn-sm btn-dark mb-2">
+                                @postagem.Categoria.Nome
+                            </button>
                             <h5 class="card-title">@postagem.Nome</h5>
                             <p class="card-text">@postagem.Descricao</p>
-                            <p class="card-text"><small class="text-body-secondary">@postagem.DataPostagem.ToString("dd/MM/yyyy")</small></p>
-                            <a asp-action="Postagem">Ler Mais</a>
+                            <p class="card-text d-flex justify-content-between">
+                                <small class="text-body-secondary">Postado em: @postagem.DataPostagem.ToString("dd/MM/yyyy")
+
+                                </small>
+                            <a asp-action="Postagem" asp-route-id="@postagem.Id" >Ler Mais</a>
+                            </p>
                         </div>
                     </div>
                     </div>

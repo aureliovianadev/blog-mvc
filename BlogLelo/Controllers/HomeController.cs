@@ -8,30 +8,19 @@ namespace BlogLelo.Controllers;
 public class HomeController : Controller // O HomeController pega a herança do Controller // todos tem acesso
 {
     private readonly ILogger<HomeController> _logger; // privado apenas aqui tem acesso
+    private List<Postagem> postagens;
 
     public HomeController(ILogger<HomeController> logger) 
     {
         _logger = logger;
-    }
 
-    public IActionResult Index()
-    {
-       
-        // Criar objetos
         Categoria decoracao = new();
         decoracao.Id = 1;
         decoracao.Nome = "Item decorativo";
 
-        /*Categoria casa = new()
-        {
-            Id = 2,
-            Nome = "casa"
-        };
+       
 
-        Categoria categoria3 = new(3, "Eletrônicos");
-*/
-
-        List<Postagem> postagens = [
+        postagens = [
         
             new() {
                 Id = 1,
@@ -68,12 +57,23 @@ public class HomeController : Controller // O HomeController pega a herança do 
             },
 
         ];
+
+    }
+
+    public IActionResult Index()
+    {
+       
         return View(postagens);
     }
 
-   public IActionResult Postagem()
+   public IActionResult Postagem(int id)
     {
-        return View();
+        var postagem = postagens
+        .Where(p => p.Id == id)
+        .SingleOrDefault();
+        if(postagem == null)
+            return NotFound();
+            return View(postagem);
     }
 
     public IActionResult Privacy()
