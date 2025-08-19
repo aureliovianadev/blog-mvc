@@ -17,8 +17,7 @@ public class HomeController : Controller // O HomeController pega a herança do 
         Categoria decoracao = new();
         decoracao.Id = 1;
         decoracao.Nome = "Item decorativo";
-
-       
+    
 
         postagens = [
         
@@ -34,7 +33,7 @@ public class HomeController : Controller // O HomeController pega a herança do 
                 Foto = "/img/1espelho.jpg"
             },
             new() {
-                Id = 1,
+                Id = 2,
                 Nome = "Vasinhos",
                 CategoriaId = 1,
                 Categoria = decoracao,
@@ -45,7 +44,7 @@ public class HomeController : Controller // O HomeController pega a herança do 
                 Foto = "/img/2vasinhos.jpg"
             },
             new() {
-                Id = 1,
+                Id = 3,
                 Nome = "Mesinhas",
                 CategoriaId = 1,
                 Categoria = decoracao,
@@ -69,11 +68,11 @@ public class HomeController : Controller // O HomeController pega a herança do 
    public IActionResult Postagem(int id)
     {
         var postagem = postagens
-        .Where(p => p.Id == id)
-        .SingleOrDefault();
+           .Where(p => p.Id == id)
+           .SingleOrDefault();
         if(postagem == null)
             return NotFound();
-            return View(postagem);
+        return View(postagem);
     }
 
     public IActionResult Privacy()
